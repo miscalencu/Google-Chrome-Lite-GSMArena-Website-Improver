@@ -2,7 +2,7 @@
 	"name": "GSM Arena Boost",
 	"description" : "Will improve some of GSMArena.com website's features",
 	"version": "0.12",
-	"description": "Will improve some of GSMArena.com website's features. For now it will only highlight differences between different phone models when you compare them.",
+	"description": "For now it will only highlight differences between different phone models when you compare them",
 	"icons": {
 		"128": "images/icon_128.png"
 	},
