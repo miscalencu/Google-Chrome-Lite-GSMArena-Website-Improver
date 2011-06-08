@@ -17,6 +17,10 @@ function fixvars(spec)
 	spec = spec.toLowerCase();
 	spec = spec.replace("no", "1");
 	spec = spec.replace("yes", "2");
+	spec = spec.replace(".", " ");
+	spec = spec.replace("=", " ");
+	spec = spec.replace("-", " ");
+	spec = spec.replace(",", " ");
 	return spec;
 }
 
