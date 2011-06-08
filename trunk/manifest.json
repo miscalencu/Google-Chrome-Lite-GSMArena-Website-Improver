@@ -1,0 +1,16 @@
+{
+	"name": "GSM Arena Boost",
+	"description" : "Will improve some of GSMArena.com website's features",
+	"version": "0.11",
+	"description": "Will improve some of GSMArena.com website's features. For now it will only highlight differences between different models.",
+	"icons": {
+		"128": "images/icon_128.png"
+	},
+	"content_scripts": [
+		{
+		"matches": ["http://www.gsmarena.com/*"],
+		"css": ["css/style.css"],
+		"js": ["js/main.js"]
+		}
+	]
+}
