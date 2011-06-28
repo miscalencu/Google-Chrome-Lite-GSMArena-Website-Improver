@@ -93,6 +93,10 @@ function compareAsNumbers(var1, var2)
 
 function highlightDifferences() {
 	var specsTable =  document.getElementById("specs-list");
+
+	if(!specsTable)
+		return;
+
 	var specsRows = specsTable.getElementsByTagName("tr");
 	var compare = 0;
 
@@ -107,12 +111,6 @@ function highlightDifferences() {
 			{
 				specCells[1].className += " gsmarena_improve_highlight";
 				specCells[2].className += " gsmarena_improve_highlight";
-
-				//if(spec1 > spec2)
-				//	specCells[1].className += " gsmarena_improve_bold";
-
-				//if(spec2 > spec1)
-				//	specCells[2].className += " gsmarena_improve_bold";
 
 				compare = compareAsNumbers(spec1, spec2);
 				if(compare == 1)
@@ -129,20 +127,26 @@ function highlightDifferences() {
 }
 
 function addGallery(){
-	// rel=""lightbox[album]"" title=""{2}""
 	var galleryContainer =  document.getElementById("gallery");
+	if(!galleryContainer)
+		return;
+
 	var galleryLinks = galleryContainer.getElementsByTagName("a");
 	for (var ii = 0; ii < galleryLinks.length; ii++) {
-		var innerImg = galleryLinks[ii].getElementsByTagName("img")[0];
+		if(galleryLinks[ii].getElementsByTagName("img").length > 0)	{
+			var innerImg = galleryLinks[ii].getElementsByTagName("img")[0];
 
-		galleryLinks[ii].title = innerImg.alt;
-		galleryLinks[ii].rel = "lightbox[album]";
-		galleryLinks[ii].removeAttribute("onclick");
-		//galleryLinks[ii].removeAttribute("href");
-		galleryLinks[ii].href = innerImg.src.replace("/thumb/", "/");
+			galleryLinks[ii].title = innerImg.alt;
+			galleryLinks[ii].rel = "lightbox[album]";
+			galleryLinks[ii].removeAttribute("onclick");
+			//galleryLinks[ii].removeAttribute("href");
+			galleryLinks[ii].href = innerImg.src.replace("/thumb/", "/");
+			}
 		}
-}
 
+	//initLightbox();
+}
+	
 var highlightCompareDifferences;
 var useGallery;
 
