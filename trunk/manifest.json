@@ -1,16 +1,18 @@
 {
 	"name": "GSM Arena Boost",
 	"description" : "Will improve some of GSMArena.com website's features",
-	"version": "0.17",
-	"description": "For now it will only highlight differences between different phone models when you compare them",
+	"version": "0.20",
+	"options_page": "options.htm",
+	"background_page": "background.htm",
+	"description": "It will highlight differences between different phone models when you compare them, improve gallery, etc..",
 	"icons": {
 		"128": "images/icon_128.png"
 	},
 	"content_scripts": [
 		{
 		"matches": ["http://www.gsmarena.com/*"],
-		"css": ["css/style.css"],
-		"js": ["js/main.js"]
+		"css": ["css/style.css", "js/lightbox2/css/lightbox.css"],
+		"js": ["js/main.js", "js/lightbox2/js/prototype.js", "js/lightbox2/js/scriptaculous.js", "js/lightbox2/js/lightbox_resize.js"]
 		}
 	]
 }
