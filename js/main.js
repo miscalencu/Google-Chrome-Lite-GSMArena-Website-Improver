@@ -91,37 +91,69 @@ function compareAsNumbers(var1, var2)
 	return 0;
 }
 
-var specsTable =  document.getElementById("specs-list");
-var specsRows = specsTable.getElementsByTagName("tr");
-var compare = 0;
+function highlightDifferences() {
+	var specsTable =  document.getElementById("specs-list");
+	var specsRows = specsTable.getElementsByTagName("tr");
+	var compare = 0;
 
-for (var ii = 0; ii < specsRows.length; ii++) {
-	var specCells = specsRows[ii].getElementsByTagName("td");
-	if(specCells.length == 3)
-	{
-		var spec1 = fixvars(trim(specCells[1].innerHTML, "").replace(/\s+/g, ""));
-		var spec2 = fixvars(trim(specCells[2].innerHTML, "").replace(/\s+/g, ""));
-
-		if(spec1 != spec2)
+	for (var ii = 0; ii < specsRows.length; ii++) {
+		var specCells = specsRows[ii].getElementsByTagName("td");
+		if(specCells.length == 3)
 		{
-			specCells[1].className += " gsmarena_improve_highlight";
-			specCells[2].className += " gsmarena_improve_highlight";
+			var spec1 = fixvars(trim(specCells[1].innerHTML, "").replace(/\s+/g, ""));
+			var spec2 = fixvars(trim(specCells[2].innerHTML, "").replace(/\s+/g, ""));
 
-			//if(spec1 > spec2)
-			//	specCells[1].className += " gsmarena_improve_bold";
+			if(spec1 != spec2)
+			{
+				specCells[1].className += " gsmarena_improve_highlight";
+				specCells[2].className += " gsmarena_improve_highlight";
 
-			//if(spec2 > spec1)
-			//	specCells[2].className += " gsmarena_improve_bold";
+				//if(spec1 > spec2)
+				//	specCells[1].className += " gsmarena_improve_bold";
 
-			compare = compareAsNumbers(spec1, spec2);
-			if(compare == 1)
-				specCells[1].className += " gsmarena_improve_bold";
+				//if(spec2 > spec1)
+				//	specCells[2].className += " gsmarena_improve_bold";
 
-			if(compare == 2)
-				specCells[2].className += " gsmarena_improve_bold";
+				compare = compareAsNumbers(spec1, spec2);
+				if(compare == 1)
+					specCells[1].className += " gsmarena_improve_bold";
 
-			//specCells[1].innerHTML = spec1;
-			//specCells[2].innerHTML = spec2;
+				if(compare == 2)
+					specCells[2].className += " gsmarena_improve_bold";
+
+				//specCells[1].innerHTML = spec1;
+				//specCells[2].innerHTML = spec2;
+			}
 		}
 	}
 }
+
+function addGallery(){
+	// rel=""lightbox[album]"" title=""{2}""
+	var galleryContainer =  document.getElementById("gallery");
+	var galleryLinks = galleryContainer.getElementsByTagName("a");
+	for (var ii = 0; ii < galleryLinks.length; ii++) {
+		var innerImg = galleryLinks[ii].getElementsByTagName("img")[0];
+
+		galleryLinks[ii].title = innerImg.alt;
+		galleryLinks[ii].rel = "lightbox[album]";
+		galleryLinks[ii].removeAttribute("onclick");
+		//galleryLinks[ii].removeAttribute("href");
+		galleryLinks[ii].href = innerImg.src.replace("/thumb/", "/");
+		}
+}
+
+var highlightCompareDifferences;
+var useGallery;
+
+chrome.extension.sendRequest({method: "get_highlightCompareDifferences"}, function(response) {
+  highlightCompareDifferences = response.status;
+  if(highlightCompareDifferences == 1)
+	highlightDifferences();
+});
+
+chrome.extension.sendRequest({method: "get_useGallery"}, function(response) {
+  useGallery = response.status;
+  if(useGallery == 1)
+	addGallery();
+});
