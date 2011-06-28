@@ -68,15 +68,14 @@ Function Calls
 //
 //	Configuration
 //
-var fileLoadingImage = '../js/lightbox2/images/loading.gif';
-var fileBottomNavCloseImage = '../js/lightbox2/images/closelabel.gif';
+var fileLoadingImage = chrome.extension.getURL("js/lightbox2/images/loading.gif");
+var fileBottomNavCloseImage = chrome.extension.getURL("js/lightbox2/images/closelabel.gif");
 
-var resizeSpeed = 7; // controls the speed of the image resizing (1=slowest and 10=fastest)
-
+var resizeSpeed = 9; // controls the speed of the image resizing (1=slowest and 10=fastest)
 var borderSize = 10; // if you adjust the padding in the CSS, you will need to update this variable
 
 // SEB
-var featBrowser = true; // set it to true or false to choose to auto-adjust the maximum size to the browser
+var featBrowser = false; // set it to true or false to choose to auto-adjust the maximum size to the browser
 var breathingSize = 10; // control the minimum space around the image box
 // END SEB
 // -----------------------------------------------------------------------------------
@@ -185,17 +184,22 @@ Lightbox.prototype = {
         if (!document.getElementsByTagName) { return; }
         var anchors = document.getElementsByTagName('a');
 
+		var lboxLinks = 0;	
+
         // loop through all anchor tags
         for (var i = 0; i < anchors.length; i++) {
             var anchor = anchors[i];
 
             var relAttribute = String(anchor.getAttribute('rel'));
-
+			
             // use the string.match() method to catch 'lightbox' references in the rel attribute
             if (anchor.getAttribute('href') && (relAttribute.toLowerCase().match('lightbox'))) {
                 anchor.onclick = function () { myLightbox.start(this); return false; }
+				lboxLinks++;
             }
         }
+
+		//alert(lboxLinks + " Lightbox items!");
 
         // The rest of this code inserts html at the bottom of the page that looks similar to this:
         //
@@ -265,10 +269,14 @@ Lightbox.prototype = {
         objPrevLink.setAttribute('href', '#');
         objHoverNav.appendChild(objPrevLink);
 
+		objPrevLink.style.background = "url(" + chrome.extension.getURL("js/lightbox2/images/prevlabel.gif") + ") left 15% no-repeat";
+
         var objNextLink = document.createElement("a");
         objNextLink.setAttribute('id', 'nextLink');
         objNextLink.setAttribute('href', '#');
         objHoverNav.appendChild(objNextLink);
+
+		objNextLink.style.background = "url(" + chrome.extension.getURL("js/lightbox2/images/nextlabel.gif") + ") right 15% no-repeat";
 
         var objLoading = document.createElement("div");
         objLoading.setAttribute('id', 'loading');
@@ -505,9 +513,9 @@ Lightbox.prototype = {
         }
 
         new Effect.Parallel(
-			[new Effect.SlideDown('imageDataContainer', { sync: true, duration: resizeDuration + 0.25, from: 0.0, to: 1.0 }),
+			[new Effect.SlideDown('imageDataContainer', { sync: true, duration: resizeDuration + 0.1, from: 0.0, to: 1.0 }),
 			  new Effect.Appear('imageDataContainer', { sync: true, duration: 1.0 })],
-			{ duration: 0.65, afterFinish: function () { myLightbox.updateNav(); } }
+			{ duration: 0.2, afterFinish: function () { myLightbox.updateNav(); } }
 		);
     },
 
