@@ -1,7 +1,7 @@
 {
-	"name": "GSM Arena Boost",
+	"name": "Lite Website Improver - GSMArena.com",
 	"description" : "Will improve some of GSMArena.com website's features",
-	"version": "0.20",
+	"version": "0.30",
 	"options_page": "options.htm",
 	"background_page": "background.htm",
 	"description": "It will highlight differences between different phone models when you compare them, improve gallery, etc..",
