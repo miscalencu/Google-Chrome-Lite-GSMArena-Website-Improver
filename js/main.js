@@ -92,7 +92,7 @@ function compareAsNumbers(var1, var2)
 }
 
 function highlightDifferences() {
-	var specsTable =  document.getElementById("specs-list");
+	var specsTable = document.getElementById("specs-list");
 
 	if(!specsTable)
 		return;
@@ -102,31 +102,35 @@ function highlightDifferences() {
 
 	for (var ii = 0; ii < specsRows.length; ii++) {
 		var specCells = specsRows[ii].getElementsByTagName("td");
-		if(specCells.length == 3)
+		if (specCells.length == 4 || specCells.length == 5)
 		{
-			var spec1 = fixvars(trim(specCells[1].innerHTML, "").replace(/\s+/g, ""));
-			var spec2 = fixvars(trim(specCells[2].innerHTML, "").replace(/\s+/g, ""));
+			var pos1 = specCells.length - 2;
+			var pos2 = specCells.length - 3;
+
+			var spec1 = fixvars(trim(specCells[pos1].innerText, "").replace(/\s+/g, ""));
+			var spec2 = fixvars(trim(specCells[pos2].innerText, "").replace(/\s+/g, ""));
 
 			if(spec1 != spec2)
 			{
-				specCells[1].className += " gsmarena_improve_highlight";
-				specCells[2].className += " gsmarena_improve_highlight";
+				specCells[pos1].className += " gsmarena_improve_highlight";
+				specCells[pos2].className += " gsmarena_improve_highlight";
 
 				compare = compareAsNumbers(spec1, spec2);
 				if(compare == 1)
-					specCells[1].className += " gsmarena_improve_bold";
+					specCells[pos1].className += " gsmarena_improve_bold";
 
 				if(compare == 2)
-					specCells[2].className += " gsmarena_improve_bold";
+					specCells[pos2].className += " gsmarena_improve_bold";
 
-				//specCells[1].innerHTML = spec1;
-				//specCells[2].innerHTML = spec2;
+				//specCells[pos1].innerHTML = spec1;
+				//specCells[pos2].innerHTML = spec2;
 			}
 		}
 	}
 }
 
-function addGallery(){
+function addGallery() {
+	return; // disabled;
 	var galleryContainer =  document.getElementById("gallery");
 	if(!galleryContainer)
 		return;

@@ -1,11 +1,11 @@
 {
 	"name": "Lite Website Improver - GSMArena.com",
 	"description" : "Will improve some of GSMArena.com website's features",
-	"version": "0.31",
+	"version": "0.35",
 	"manifest_version": 2,
 	"options_page": "options.htm",
 	"background": { "page": "background.htm" },
-	"description": "It will highlight differences between different phone models when you compare them, improve gallery, etc..",
+	"description": "It will highlight differences between different phone models when you compare them, improve gallery (deprecated), etc..",
 	"icons": {
 		"128": "images/icon_128.png"
 	},
@@ -15,5 +15,10 @@
 		"css": ["css/style.css", "js/lightbox2/css/lightbox.css"],
 		"js": ["js/main.js", "js/lightbox2/js/prototype.js", "js/lightbox2/js/builder.js", "js/lightbox2/js/effects.js", "js/lightbox2/js/scriptaculous.js", "js/lightbox2/js/lightbox_resize.js"]
 		}
-	]
+	],
+	"web_accessible_resources": 
+		[
+		"js/lightbox2/images/loading.gif", 
+		"js/lightbox2/images/closelabel.gif"
+		]
 }
