@@ -1,10 +1,20 @@
-#specs-list td.gsmarena_improve_highlight
+#specs-list td.gsmarena_improve_highlight, #specs-list td.gsmarena_improve_highlight a.noUnd:link
 	{
 	background: #F7F0E3;
 	color: #B23F33;
 	}
 
-#specs-list td.gsmarena_improve_bold
+#specs-list td.gsmarena_improve_highlight0, #specs-list td.gsmarena_improve_highlight0 a.noUnd:link
+	{
+	color: gray;
+	}
+
+#specs-list td.gsmarena_improve_highlight5, #specs-list td.gsmarena_improve_highlight5 a.noUnd:link
+	{
+	font-weight: normal;
+	}
+
+#specs-list td.gsmarena_improve_highlight10, #specs-list td.gsmarena_improve_highlight10 a.noUnd:link
 	{
 	font-weight: bold;
 	}
