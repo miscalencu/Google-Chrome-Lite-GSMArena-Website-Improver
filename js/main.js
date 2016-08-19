@@ -117,7 +117,7 @@ function highlightDifferences() {
 			var spec3 = fixvars(trim(specCells[pos3].innerText, "").replace(/\s+/g, ""));
 
 			if (spec2 == "" && spec3 == "") {
-				return;
+				continue;
 			}
 
 			if (spec1 != spec2 || (spec1 != spec3 && spec3 != "") || (spec2 != spec3 && spec3 != ""))

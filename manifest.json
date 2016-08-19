@@ -1,7 +1,7 @@
 {
 	"name": "Lite Website Improver - GSMArena.com",
 	"description" : "Will improve some of GSMArena.com website's features",
-	"version": "0.40",
+	"version": "0.41",
 	"manifest_version": 2,
 	"options_page": "options.htm",
 	"background": { "page": "background.htm" },
@@ -12,8 +12,8 @@
 	"content_scripts": [
 		{
 		"matches": ["http://www.gsmarena.com/*"],
-		"css": ["css/style.css", "js/lightbox2/css/lightbox.css"],
-		"js": ["js/main.js", "js/lightbox2/js/prototype.js", "js/lightbox2/js/builder.js", "js/lightbox2/js/effects.js", "js/lightbox2/js/scriptaculous.js", "js/lightbox2/js/lightbox_resize.js"]
+		"css": ["css/style.css"],
+		"js": ["js/main.js"]
 		}
 	],
 	"web_accessible_resources": 
